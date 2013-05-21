@@ -54,6 +54,7 @@ So let's see how we can organise everything in classes:
   - zone[] neighbors # list of adjacent zones in the map
 
 * class zone:
+
   - map subzones # contains all elementary subzones forming a logical zone
 
 * class table:
