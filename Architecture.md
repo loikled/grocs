@@ -43,13 +43,15 @@ So let's see how we can organise everything in classes:
   - moveable # some items are fixed and you just need to change its state
   - state # can be changed to give the points
 
-* class subzone:
+* class zone:
   - image
   - color
   - rect dimensions
   - list items # the elements it is containing
   - string state # occupied by another robot for example
   - bool rollable # can the robot move on/through it?
+  - zone[] childrens # list of subzones inside this zone
+  - zone[] neighbors # list of adjacent zones in the map
 
 * class zone:
   - map subzones # contains all elementary subzones forming a logical zone
@@ -57,7 +59,7 @@ So let's see how we can organise everything in classes:
 * class table:
   - image background 
   - rect dimensions
-  - map zones # contains all the zone objects referenced by theyr names
+  - map zones # contains all the zone objects referenced by their names
 
 
 Representation in 2D
