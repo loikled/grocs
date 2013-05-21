@@ -52,6 +52,7 @@ So let's see how we can organise everything in classes:
   - bool rollable # can the robot move on/through it?
 
 * class zone:
+
   - map subzones # contains all elementary subzones forming a logical zone
 
 * class table:
