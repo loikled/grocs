@@ -28,7 +28,36 @@ It is composed of the following items:
 * A color: the side of the table where you begin, your team
 * The points: for each action/item.
 * The total score: sum of the points for each team
+* The time: each action takes time
+* The remaining time: 90s per match.
 
+So let's see how we can organise everything in classes:
+
+
+* class item:
+  - color
+  - points #number of points that it gives
+  - condition #condition to be met for the points to count, ex : state == PUSHED
+  - position #on the map
+  - dimension # in mm
+  - moveable # some items are fixed and you just need to change its state
+  - state # can be changed to give the points
+
+* class subzone:
+  - image
+  - color
+  - rect dimensions
+  - list items # the elements it is containing
+  - string state # occupied by another robot for example
+  - bool rollable # can the robot move on/through it?
+
+* class zone:
+  - map subzones # contains all elementary subzones forming a logical zone
+
+* class table:
+  - image background 
+  - rect dimensions
+  - map zones # contains all the zone objects referenced by theyr names
 
 
 Representation in 2D
