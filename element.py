@@ -1,7 +1,11 @@
-class element:
+class Element:
     states = ['reseted','activated']
-    def __init__(self, owner = 'everyone', name = 'item',  points = 0, zone = None):
-        self.image_path = ""
+    def __init__(self,
+                 owner = 'everyone',
+                 name = 'item',
+                 number = 0,
+                 points = 0,
+                 zone = None):
         self.owner = owner
         self.state = 'reseted'
         self.moveable = True
@@ -9,7 +13,8 @@ class element:
         self.upper_in_stack = None
         self.base_points = points
         self.name = 'item'
-        self.number = 0
+        self.number = number
+        self.id = name + str(number)
         self.start_zone = zone
         self.current_zone = self.start_zone
 
