@@ -1,9 +1,10 @@
-from geometry import Point
+from geometry import *
 
-class Zone:
+class Zone(Polygon):
     states = ["free", "taken"]
 
     def __init__(self, name = 'zone', number = 0):
+        Polygon.__init__(self)
         self.items = []
         self.state = "free"
         self.is_crossable = True
@@ -12,8 +13,7 @@ class Zone:
         self.number = number
         self.name = name
         self.id = self.name + str(self.number)
-        self.polygon = []
-        self.center = Point(0,0)
+        self.polygon = Polygon()
 
     def __repr__(self):
         string = 'id: '+self.id + ', state: ' + self.state + ', crossable: ' + str(self.is_crossable) + '\n'
@@ -24,9 +24,7 @@ class Zone:
         return string
     
     def set_polygon(self, points):
-        self.polygon = points
-        self.center.x = sum(point.x for point in self.polygon)/len(self.polygon)
-        self.center.y = sum(point.y for point in self.polygon)/len(self.polygon)
+        self.polygon = Polygon(points)
              
     def add_child(self, subzone):
         self.childrens.append(subzone)
@@ -43,4 +41,3 @@ if __name__ == '__main__':
 
     print 'test zone: '
     print str(background)
-    
