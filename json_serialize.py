@@ -2,7 +2,7 @@
 from Zone import *
 from Element import *
 from Geometry import *
-from Table import *
+from table import *
 
 def serialize(obj):
     if isinstance(obj, Point):
@@ -23,7 +23,7 @@ def serialize(obj):
         return  {"__class__" : "Polygon",
                  "points": obj.get_points()
                 }
-    if isinstance(obj, Table):
+    if isinstance(obj, Table.Table()):
         return {"__class__" : "Table",
                 "root_zone" : obj.root_zone,
                 "zones_map" : obj.zones_map.values(),

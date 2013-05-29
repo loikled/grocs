@@ -1,8 +1,10 @@
 import pygame
 from pygame.locals import *
-from Table import *
 from collections import deque
 from pygame.transform import scale
+
+#from table import Table
+from json_serialize import *
 
 class Graphics:
     rsrc_folder = 'ressources/'
@@ -84,35 +86,7 @@ class Graphics:
         pygame.quit()    
 
 if __name__ == '__main__':
-    g = Graphics()    
-    background = Zone('background')
-    square = [(0,0), (3000,0), (3000,2000), (0,2000)]
-    background.set_polygon(square)
-    up_left = Zone('start_red')
-    square = [(0,0), (500,0), (500,500), (0,500)]
-    up_left.set_polygon(square)
-    up_right = Zone('start_blue')
-    square = [(3000-500,0), (3000,0), (3000,500), (3000-500,500)]
-    up_right.set_polygon(square)
-
-    down_left = Zone('start_red',1)
-    square = [(0,2000-500), (500,2000-500), (500,2000), (0,2000)]
-    down_left.set_polygon(square)
-    down_right = Zone('start_blue',1)
-    square = [(3000-500,2000-500), (3000,2000-500), (3000,2000), (3000-500,2000)]
-    down_right.set_polygon(square)
-
-    background.add_child(up_left.id)
-    background.add_child(up_right.id)
-    background.add_child(down_left.id)
-    background.add_child(down_right.id)
-    
-    table = Table()
-    table.set_root(background)
-    table.add_zone(up_left)
-    table.add_zone(up_right)
-    table.add_zone(down_left)
-    table.add_zone(down_right)
-    
+    g = Graphics()       
+    table = load_config("test.conf")
     g.load_table(table)
     g.main_loop()
