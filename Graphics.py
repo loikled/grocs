@@ -5,6 +5,7 @@ from collections import deque
 from pygame.transform import scale
 
 class Graphics:
+    rsrc_folder = 'ressources/'
     def __init__(self):
         pygame.init()
         self.screen_width = 640
@@ -20,7 +21,7 @@ class Graphics:
     def load_table(self, table):
         self.table = table
         for zone in table.zones_map.values():
-            name = zone.name+".bmp"
+            name = Graphics.rsrc_folder+zone.name+".bmp"
             print 'loading: '+ name
             self.surfaces[zone.id] = pygame.image.load(name).convert()
 
@@ -68,10 +69,10 @@ class Graphics:
             self.refresh_table()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    do_continue = False # Be IDLE friendly!
+                    do_continue = False
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
-                        do_continue = False # Be IDLE friendly
+                        do_continue = False
             pygame.display.update()
         pygame.quit()    
 
