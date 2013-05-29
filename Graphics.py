@@ -13,11 +13,18 @@ class Graphics:
         self.surfaces = {}
         self.clock = pygame.time.Clock()
         self.fps = 30
-        self.screen = pygame.display.set_mode([self.screen_width,self.screen_height])
-        self.screen.fill([255,255,255])
         self.ratio_x = 1.0
         self.ratio_y = 1.0
-        
+        self.init_screen()
+
+    def init_screen(self):
+        video_info = pygame.display.Info()
+        self.screen_width = video_info.current_w
+        self.screen_height = video_info.current_h
+        self.screen = pygame.display.set_mode([self.screen_width,self.screen_height],
+                                              pygame.FULLSCREEN | pygame.DOUBLEBUF)
+        self.screen.fill([255,255,255])
+
     def load_table(self, table):
         self.table = table
         for zone in table.zones_map.values():
