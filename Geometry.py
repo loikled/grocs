@@ -37,7 +37,13 @@ class Polygon:
         if len(self.points)> 0:
             self.center.x = sum(point.x for point in self.points)/len(self.points)
             self.center.y = sum(point.y for point in self.points)/len(self.points)
-    
+
+    def get_points(self):
+        point_list = []
+        for point in self.points:
+            point_list.append((point.x,point.y))
+        return point_list
+
     def add_point(self, point):
         self.points.append(point)
         update_center()
