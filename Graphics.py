@@ -1,6 +1,6 @@
 import pygame
 from pygame.locals import *
-from table import *
+from Table import *
 from collections import deque
 from pygame.transform import scale
 

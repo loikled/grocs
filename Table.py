@@ -1,4 +1,4 @@
-from zone import *
+from Zone import *
 
 class Table:
     def __init__(self, config_file = ''):

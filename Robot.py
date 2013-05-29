@@ -1,6 +1,6 @@
-from position import *
+from Position import *
 
-class robot:
+class Robot:
 """robot class, performs actions in the game, actions that take time"""
     def __init__(self, name = 'robot', color = 'red'):
         self.name = name

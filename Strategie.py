@@ -1,7 +1,3 @@
-
-
-
-
 class Strategie :
     idents = 1
     genome_length = 9

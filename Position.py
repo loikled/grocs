@@ -1,5 +1,5 @@
 from math import sqrt,sin,cos,atan,pi
-from geometry import *
+from Geometry import *
 
 class Position(Point):
     def __init__(self, x = 0, y = 0, angle = 0, acceleration = 0, l_speed = 0, r_speed = 0):

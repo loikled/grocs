@@ -1,4 +1,4 @@
-from geometry import *
+from Geometry import *
 
 class Zone(Polygon):
     states = ["free", "taken"]
