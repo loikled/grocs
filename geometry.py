@@ -26,7 +26,7 @@ class Segment:
 
 class Polygon:
     """create a lists of points each connected to the next one"""
-    def __init__(self, point_list = []):
+    def __init__(self, point_list = [(0,0),(0,0),(0,0)]):
         self.points = []
         for (a,b) in point_list:
             self.points.append(Point(a,b))
@@ -34,8 +34,9 @@ class Polygon:
         self.update_center()
     
     def update_center(self):
-        self.center.x = sum(point.x for point in self.points)/len(self.points)
-        self.center.y = sum(point.y for point in self.points)/len(self.points)
+        if len(self.points)> 0:
+            self.center.x = sum(point.x for point in self.points)/len(self.points)
+            self.center.y = sum(point.y for point in self.points)/len(self.points)
     
     def add_point(self, point):
         self.points.append(point)
@@ -48,11 +49,23 @@ class Polygon:
         edges = []
         for (a,b) in zip(self.points[:-1],self.points[1:]):
             edges.append(Segment(a,b))
+        edges.append(Segment(self.points[-1],self.points[0]))
         return edges
+
+    def __repr__(self):
+        res =''
+        for point in self.points:
+            res += str(point)
+        res += '\n'
+        for segment in self.get_edges():
+            res += str(segment) + '\n'
+        return res
 
 if __name__ == '__main__':
     a = Point(0,0)
     b = Point(3,4)
+    c = Polygon()
+    print c
     square = Polygon([(0,0),(1,0),(1,1),(0,1)])
     print 'a: ' + str(a) + ', b: ' + str(b)
     print 'distance ab: ' + str(a.distance_from(b))

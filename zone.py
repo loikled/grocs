@@ -13,18 +13,17 @@ class Zone(Polygon):
         self.number = number
         self.name = name
         self.id = self.name + str(self.number)
-        self.polygon = Polygon()
 
     def __repr__(self):
         string = 'id: '+self.id + ', state: ' + self.state + ', crossable: ' + str(self.is_crossable) + '\n'
-        string += 'Polygon: '+ str(self.polygon)
+        string += 'Polygon: '+ str(Polygon.__repr__(self))
         string += '\nitems in: ' + str(self.items) + '\n'
         string += 'neighbors: ' +str(self.neighbors) + '\n'
         string += 'childrens: ' + str(self.childrens) + '\n'
         return string
     
     def set_polygon(self, points):
-        self.polygon = Polygon(points)
+        Polygon.__init__(self, points)
              
     def add_child(self, subzone):
         self.childrens.append(subzone)
@@ -36,7 +35,7 @@ if __name__ == '__main__':
     background = Zone('background')
     background.add_child('start_left')
     background.add_child('start_right')
-    square = [Point(0,0), Point(3000,0),Point(3000,2000),Point(0,2000)]
+    square = [(0,0), (3000,0), (3000,2000), (0,2000)]
     background.set_polygon(square)
 
     print 'test zone: '
