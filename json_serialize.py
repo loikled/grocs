@@ -23,6 +23,14 @@ def serialize(obj):
         return  {"__class__" : "Polygon",
                  "points": obj.get_points()
                 }
+    if isinstance(obj, Table):
+        return {"__class__" : "Table",
+                "root_zone" : obj.root_zone,
+                "zones_map" : obj.zones_map.values(),
+                "blue_robots" : obj.blue_robots,
+                "red_robots": obj.red_robots,
+                "elements" : obj.elements
+                }
     if isinstance(obj, Element):
         return {"__class__" : "Element",
                 "moveable" : obj.moveable,
@@ -43,8 +51,26 @@ def unserialize(obj_dict):
             obj.neighbors = obj_dict["neighbors"]
             obj.set_polygon(obj_dict["points"])
             return obj
+        
+        if obj_dict["__class__"] == "Table":
+            obj = Table()
+            obj.root_zone = obj_dict["root_zone"]
+            for zone in  obj_dict["zones_map"]:
+                obj.add_zone(zone)
+            obj.red_robots = obj_dict["red_robots"]
+            obj.blue_robots = obj_dict["blue_robots"]
+            obj.elements = obj_dict["elements"]
+            return obj
     else:
         return None
+
+def load_config(config_file):
+    if config_file != '':
+        table = Table()
+        with open(config_file, "r") as conf:
+            table  = load(conf, object_hook=unserialize)
+        conf.close()
+    return table 
 
 if __name__ == '__main__':
     
@@ -78,17 +104,8 @@ if __name__ == '__main__':
     table.add_zone(down_right)
 
     with open("test.json", "w") as File:
-        dump(table.zones_map, File, default=serialize, indent=4)
-    
+        dump(table, File, default=serialize, indent=4) 
     File.close()
     
-    table_loaded = Table()
-    tmp = {}
-    with open("test.json", "r") as File:
-       tmp = load(File)
-        
-    print 'tmp: ' + str(tmp)
-    for (key,value) in tmp.items():
-        table_loaded.add_zone(unserialize(value))
-    File.close()
+    table_loaded = load_config("test.json")
     print table_loaded

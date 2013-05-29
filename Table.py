@@ -1,4 +1,5 @@
 from Zone import *
+from json_serialize import *
 
 class Table:
     def __init__(self, config_file = ''):
@@ -7,7 +8,6 @@ class Table:
             self.red_robots = []
             self.blue_robots = []
             self.elements = []
-            self.load_config(config_file)
 
     def set_root(self, zone):
         self.root_zone = zone
@@ -16,13 +16,14 @@ class Table:
     def add_zone(self, zone):
         self.zones_map[zone.id] = zone
         
-    def load_config(self, config_file):
-            None
+
     def __repr__(self):
         res = 'Table, zones: \n'
         for zone in self.zones_map.values():
             res += str(zone) + '\n'
         return res
+
+  
 
 if __name__ == '__main__':   
     background = Zone('background')
