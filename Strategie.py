@@ -8,4 +8,4 @@ class Strategie :
         Strategie.idents += 1
         
     def __repr__(self):
-        return "strat" + str(self.ident) + " genome : " + self.genome
+        return "< strat" + str(self.ident) + " | genome : " + self.genome + " | score : " + str(self.score) + " >"
