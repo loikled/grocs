@@ -1,7 +1,8 @@
-﻿from json import loads,dumps
+﻿from json import loads,dumps,load,dump
 from Zone import *
 from Element import *
 from Geometry import *
+from Table import *
 
 def serialize(obj):
     if isinstance(obj, Point):
@@ -46,16 +47,48 @@ def unserialize(obj_dict):
         return None
 
 if __name__ == '__main__':
+    
     background = Zone('background')
-    background.add_child('start_left')
-    background.add_child('start_right')
     square = [(0,0), (3000,0), (3000,2000), (0,2000)]
     background.set_polygon(square)
+    up_left = Zone('start_red')
+    square = [(0,0), (500,0), (500,500), (0,500)]
+    up_left.set_polygon(square)
+    up_right = Zone('start_blue')
+    square = [(3000-500,0), (3000,0), (3000,500), (3000-500,500)]
+    up_right.set_polygon(square)
 
-    print 'test zone: '
-    print str(background)
-   
-    a_serialized = dumps(serialize(background))
-    print a_serialized
-    b = unserialize(loads(a_serialized))
-    print b
+    down_left = Zone('start_red',1)
+    square = [(0,2000-500), (500,2000-500), (500,2000), (0,2000)]
+    down_left.set_polygon(square)
+    down_right = Zone('start_blue',1)
+    square = [(3000-500,2000-500), (3000,2000-500), (3000,2000), (3000-500,2000)]
+    down_right.set_polygon(square)
+
+    background.add_child(up_left.id)
+    background.add_child(up_right.id)
+    background.add_child(down_left.id)
+    background.add_child(down_right.id)
+    
+    table = Table()
+    table.set_root(background)
+    table.add_zone(up_left)
+    table.add_zone(up_right)
+    table.add_zone(down_left)
+    table.add_zone(down_right)
+
+    with open("test.json", "w") as File:
+        dump(table.zones_map, File, default=serialize, indent=4)
+    
+    File.close()
+    
+    table_loaded = Table()
+    tmp = {}
+    with open("test.json", "r") as File:
+       tmp = load(File)
+        
+    print 'tmp: ' + str(tmp)
+    for (key,value) in tmp.items():
+        table_loaded.add_zone(unserialize(value))
+    File.close()
+    print table_loaded
