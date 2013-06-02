@@ -58,47 +58,12 @@ class Reproduction :
             strategie.do_strat()
         
 reproduction = Reproduction()
+genome = "1"*19
+reproduction.add_strat(Strategie(genome))
+reproduction.add_strat(Strategie(genome))
+reproduction.add_strat(Strategie(genome))
+reproduction.add_strat(Strategie(genome))
 
-reproduction.add_strat(Strategie('000000001000000000000000000000000000'))
-reproduction.add_strat(Strategie('000000000000000000000000000000000000'))
-reproduction.add_strat(Strategie('101001110000000000000000000000000000'))
-reproduction.add_strat(Strategie('101000000000000000000000000000000000'))
-reproduction.add_strat(Strategie('101001110000000000000000000000000000'))
-reproduction.add_strat(Strategie('101000000000000000000000000000000000'))
-reproduction.add_strat(Strategie('101001110000000000000000000000000000'))
-reproduction.add_strat(Strategie('101000000000000000000000000000000000'))
-reproduction.add_strat(Strategie('000000001000000000000000000000000000'))
-reproduction.add_strat(Strategie('000000000000000000000000000000000000'))
-reproduction.add_strat(Strategie('101001110000000000000000000000000000'))
-reproduction.add_strat(Strategie('101000000000000000000000000000000000'))
-reproduction.add_strat(Strategie('101001110000000000000000000000000000'))
-reproduction.add_strat(Strategie('101000000000000000000000000000000000'))
-reproduction.add_strat(Strategie('101001110000000000000000000000000000'))
-reproduction.add_strat(Strategie('101000000000000000000000000000000000'))
-reproduction.add_strat(Strategie('000000001000000000000000000000000000'))
-reproduction.add_strat(Strategie('000000000000000000000000000000000000'))
-reproduction.add_strat(Strategie('101001110000000000000000000000000000'))
-reproduction.add_strat(Strategie('101000000000000000000000000000000000'))
-reproduction.add_strat(Strategie('101001110000000000000000000000000000'))
-reproduction.add_strat(Strategie('101000000000000000000000000000000000'))
-reproduction.add_strat(Strategie('101001110000000000000000000000000000'))
-reproduction.add_strat(Strategie('101000000000000000000000000000000000'))
-reproduction.add_strat(Strategie('000000001000000000000000000000000000'))
-reproduction.add_strat(Strategie('000000000000000000000000000000000000'))
-reproduction.add_strat(Strategie('101001110000000000000000000000000000'))
-reproduction.add_strat(Strategie('101000000000000000000000000000000000'))
-reproduction.add_strat(Strategie('101001110000000000000000000000000000'))
-reproduction.add_strat(Strategie('101000000000000000000000000000000000'))
-reproduction.add_strat(Strategie('111111111111111111111111111111111111'))
-reproduction.add_strat(Strategie('101000000000000000000000000000000000'))
-reproduction.add_strat(Strategie('000000001000000000000000000000000000'))
-reproduction.add_strat(Strategie('000000000000000000000000000000000000'))
-reproduction.add_strat(Strategie('101001110000000000000000000000000000'))
-reproduction.add_strat(Strategie('101000000000000000000000000000000000'))
-reproduction.add_strat(Strategie('101001110000000000000000000000000000'))
-reproduction.add_strat(Strategie('101000000000000000000000000000000000'))
-reproduction.add_strat(Strategie('101001110000000000000000000000000000'))
-reproduction.add_strat(Strategie('101000000000000000000000000000000000'))
 
 reproduction.sort()
 for i in range(2) :
@@ -106,4 +71,8 @@ for i in range(2) :
         print strat
     print "\n"
     reproduction.start_generation()
+reproduction.all_strats[0].create_table()
+
+
+print reproduction.all_strats[0].table
 
