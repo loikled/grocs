@@ -21,6 +21,13 @@ class Strategie :
         rank = other_y*6+other_y*6*4+x*6*16+y*6*64
         return int(self.genome[rank:rank+6],2)
 
+    def strategie(self) :
+        root = Edge(none)
+        for i in range(180) :
+            root.add_son(Edge(root))
+    
+
+
 
     def create_table(self) :
         for i in range(30) :
